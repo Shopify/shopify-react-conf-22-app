@@ -1,15 +1,18 @@
 import { Card, Page, EmptyState, List } from '@shopify/polaris';
 import { ResourcePicker } from '@shopify/app-bridge-react';
+import { useState } from 'react';
 
 export function HomePage() {
-  const selectedProducts = ['Product 1', 'Product 2', 'Product 3'];
+  const [resourcePickerOpen, setResourcePickerOpen] = useState(false);
+
+  const selectedProducts = [];
 
   const emptyState = (
     <EmptyState
       heading="Create a Subscription box"
       action={{
         content: 'Select Products',
-        onAction: () => console.log('Clicked!'),
+        onAction: () => setResourcePickerOpen(true),
       }}
       image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
     >
@@ -31,8 +34,8 @@ export function HomePage() {
         {selectedProducts.length ? productList : emptyState}
         <ResourcePicker
           resourceType="Product"
-          open={true}
-          onSelection={() => {}}
+          open={resourcePickerOpen}
+          onSelection={() => setResourcePickerOpen(false)}
         />
       </Card>
     </Page>
