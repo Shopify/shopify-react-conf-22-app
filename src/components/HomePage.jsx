@@ -5,7 +5,7 @@ import { useState } from 'react';
 export function HomePage() {
   const [resourcePickerOpen, setResourcePickerOpen] = useState(false);
 
-  const selectedProducts = [];
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   const emptyState = (
     <EmptyState
@@ -22,9 +22,9 @@ export function HomePage() {
 
   const productList = (
     <List>
-      <List.Item>Product1 ID</List.Item>
-      <List.Item>Product2 ID</List.Item>
-      <List.Item>Product3 ID</List.Item>
+      {selectedProducts.map(({ title }) => (
+        <List.Item> {title}</List.Item>
+      ))}
     </List>
   );
 
@@ -35,7 +35,12 @@ export function HomePage() {
         <ResourcePicker
           resourceType="Product"
           open={resourcePickerOpen}
-          onSelection={() => setResourcePickerOpen(false)}
+          onSelection={(selectPayload) => {
+            console.log(selectPayload.selection);
+
+            setResourcePickerOpen(false);
+            setSelectedProducts(selectPayload.selection);
+          }}
         />
       </Card>
     </Page>
