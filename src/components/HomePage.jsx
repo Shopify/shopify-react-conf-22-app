@@ -1,4 +1,4 @@
-import { Card, Page, EmptyState } from '@shopify/polaris';
+import { Card, Page, EmptyState, List } from '@shopify/polaris';
 
 export function HomePage() {
   const emptyState = (
@@ -12,6 +12,14 @@ export function HomePage() {
     >
       <p>Select products to create a subscription plan</p>
     </EmptyState>
+  );
+
+  const productList = (
+    <List>
+      <List.Item>Product1 ID</List.Item>
+      <List.Item>Product2 ID</List.Item>
+      <List.Item>Product3 ID</List.Item>
+    </List>
   );
 
   return (
