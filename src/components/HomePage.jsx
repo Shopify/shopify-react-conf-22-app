@@ -1,6 +1,8 @@
 import { Card, Page, EmptyState, List } from '@shopify/polaris';
 
 export function HomePage() {
+  const selectedProducts = ['Product 1', 'Product 2', 'Product 3'];
+
   const emptyState = (
     <EmptyState
       heading="Create a Subscription box"
@@ -24,7 +26,9 @@ export function HomePage() {
 
   return (
     <Page fullWidth>
-      <Card sectioned>{emptyState}</Card>
+      <Card sectioned>
+        {selectedProducts.length ? productList : emptyState}
+      </Card>
     </Page>
   );
 }
