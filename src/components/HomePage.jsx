@@ -1,4 +1,5 @@
 import { Card, Page, EmptyState, List } from '@shopify/polaris';
+import { ResourcePicker } from '@shopify/app-bridge-react';
 
 export function HomePage() {
   const selectedProducts = ['Product 1', 'Product 2', 'Product 3'];
@@ -28,6 +29,11 @@ export function HomePage() {
     <Page fullWidth>
       <Card sectioned>
         {selectedProducts.length ? productList : emptyState}
+        <ResourcePicker
+          resourceType="Product"
+          open={true}
+          onSelection={() => {}}
+        />
       </Card>
     </Page>
   );
