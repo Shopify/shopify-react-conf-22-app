@@ -1,4 +1,4 @@
-import { Shopify } from "@shopify/shopify-api";
+import { Shopify } from '@shopify/shopify-api';
 
 const TEST_GRAPHQL_QUERY = `
 {
@@ -12,7 +12,7 @@ export default function verifyRequest(app, { returnHeader = true } = {}) {
     const session = await Shopify.Utils.loadCurrentSession(
       req,
       res,
-      app.get("use-online-tokens")
+      app.get('use-online-tokens')
     );
 
     let shop = req.query.shop;
@@ -52,12 +52,12 @@ export default function verifyRequest(app, { returnHeader = true } = {}) {
           const matches = authHeader?.match(/Bearer (.*)/);
           if (matches) {
             const payload = Shopify.Utils.decodeSessionToken(matches[1]);
-            shop = payload.dest.replace("https://", "");
+            shop = payload.dest.replace('https://', '');
           }
         }
       }
 
-      if (!shop || shop === "") {
+      if (!shop || shop === '') {
         return res
           .status(400)
           .send(
@@ -66,9 +66,9 @@ export default function verifyRequest(app, { returnHeader = true } = {}) {
       }
 
       res.status(403);
-      res.header("X-Shopify-API-Request-Failure-Reauthorize", "1");
+      res.header('X-Shopify-API-Request-Failure-Reauthorize', '1');
       res.header(
-        "X-Shopify-API-Request-Failure-Reauthorize-Url",
+        'X-Shopify-API-Request-Failure-Reauthorize-Url',
         `/auth?shop=${shop}`
       );
       res.end();
