@@ -1,5 +1,6 @@
 # Environment Configuration
 .env
+.history
 
 # Dependency directory
 node_modules
